@@ -8,15 +8,23 @@
   </head>
   <body>
     <div id="app">
+      <div class="cards">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+      <div id="todo-title"></div>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
-
+      <div id="todo-subtitle"></div>
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+      <input type="text" id="todo-input"/>
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+      <button id="todo-submit">Submit</button>
 
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+        <ul id="todo-output">
+
+        </ul>
+      </div>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
@@ -29,13 +37,59 @@
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      document.body.style.backgroundColor = "gray";
+      const card = document.querySelector('.cards');
+      card.style.width = "50%";
+      card.style.height = "400px";
+      card.style.backgroundColor = "white";
+      card.style.margin = "auto";
+      card.style.border = "3px solid green";
+      card.style.padding = "10px";
+
+      const title = document.getElementById('todo-title');
+      const judul = document.createElement('h1');
+      judul.style.textAlign = "center";
+      judul.innerText = "To-Do List";
+      judul.backgroundColor = "red";
+      title.appendChild(judul);
+
+      const subtitle = document.getElementById('todo-subtitle');
+      const judulSubtitle = document.createElement('h4');
+      judulSubtitle.style.textAlign = "center";
+      judulSubtitle.innerText = "~ Today I need to ~";
+      subtitle.appendChild(judulSubtitle);
+
+      input = document.querySelector('input');
+      input.style.marginLeft = "35%";
+
+      button = document.querySelector('button');
+      
+     const listToDo = document.querySelector("#todo-output");
+     listToDo.style.marginLeft = "35%";
+
+      function fnClickHandler(toDoItem) {
+        input.value = '';
+        output = document.createElement("li");
+        output.textContent = toDoItem;
+        return output;
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
-      
+      button.addEventListener('click', () => {
+        const isi = input.value;
+        listToDo.appendChild(fnClickHandler(isi));
+        
+      });
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.addEventListener('keydown', (event) => {
+        if(event.key === 'Enter'){
+          const isi = input.value;
+          listToDo.appendChild(fnClickHandler(isi));
+        }
+      })
+
     </script>
   </body>
 </html>
